@@ -48,8 +48,21 @@ public class Game implements MouseListener, KeyListener {
 		}
 
 		// Create a new bullet to be shot by the gun
-		String[] bulletSpeed = main.ArsenalGuns.get(main.GunIndex).get(4).split("=");
-		main.bullet.add(new Bullet(main, main.ArsenalGuns.get(main.GunIndex).get(2), main.getWidth() / 2, main.getHeight() / 2, angle, Integer.parseInt(bulletSpeed[1])));
+		String[] bulletAttribute = main.ArsenalGuns.get(main.GunIndex).get(4).split("="); // bulletSpeed or bulletAmount depends on the category
+		String GunCategory = main.ArsenalGuns.get(main.GunIndex).get(2);
+		if (GunCategory.equals("Category=Shotgun") == true) {
+			for (int i = 0; i < Integer.parseInt(bulletAttribute[1]); i++) {
+				Double ShotgunAngle;
+				if ( (i & 1) == 0 ) {
+					ShotgunAngle = angle+i*0.1;
+				}else {
+					ShotgunAngle = angle-i*0.1;
+				}
+				main.bullet.add(new Bullet(main, GunCategory, main.getWidth() / 2, main.getHeight() / 2, ShotgunAngle, 5));
+			}
+		} else {
+			main.bullet.add(new Bullet(main, GunCategory, main.getWidth() / 2, main.getHeight() / 2, angle, Integer.parseInt(bulletAttribute[1])));
+		}
 
 	}
 

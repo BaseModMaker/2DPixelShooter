@@ -28,8 +28,7 @@ public class Main extends JPanel {
 	private static final long serialVersionUID = 1L;
 	public MainMenu mainMenu;
 	public GunSpriteSelection gunSpriteSelection;
-	public RifleCreationScreen rifleCreationScreen;
-	public SniperCreationScreen sniperCreationScreen;
+	public GunCreationScreen rifleCreationScreen;
 	public Arsenal arsenal;
 	public Game game;
 	public GunCategorySelection gunCategorySelection;

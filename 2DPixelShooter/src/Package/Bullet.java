@@ -31,14 +31,17 @@ public class Bullet {
 		// Test what type of gun it is
 		if (GunCategory.equals("Category=Rifle") == true) {
 			g.fillOval(X, Y, 3, 3);
-		} else {
+		}
+		if (GunCategory.equals("Category=Sniper") == true) {
 			g.drawLine(BeginPositionX, BeginPositionY, (int) (Math.cos(Angle) * 1000) + BeginPositionX, (int) (Math.sin(Angle) * 1000) + BeginPositionY);
 		}
-
+		if (GunCategory.equals("Category=Shotgun") == true) {
+			g.fillOval(X, Y, 3, 3);
+		}
 	}
 
 	public void update() {
-		if (GunCategory.equals("Category=Rifle") == true) {
+		if (GunCategory.equals("Category=Rifle") == true || GunCategory.equals("Category=Shotgun") == true) {
 			// Change X and Y according to the speed
 			X = (int) (Math.cos(Angle) * RadialSpeed * Time) + BeginPositionX;
 			Y = (int) (Math.sin(Angle) * RadialSpeed * Time) + BeginPositionY;
@@ -51,7 +54,10 @@ public class Bullet {
 				main.bullet.remove(this);
 			}
 
-		} else {
+		} 
+		
+		
+		if (GunCategory.equals("Category=Sniper") == true) {
 			// Make the sniper bullet show time deplete
 			SniperBulletShotShowTime -= 1;
 

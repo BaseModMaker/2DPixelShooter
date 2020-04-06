@@ -11,7 +11,7 @@ import java.util.Arrays;
 
 import javax.swing.JButton;
 
-public class RifleCreationScreen implements ActionListener, KeyListener {
+public class GunCreationScreen implements ActionListener, KeyListener {
 	String Hi;
 	Main main;
 	int pannelWidth, pannelHeight;
@@ -19,14 +19,30 @@ public class RifleCreationScreen implements ActionListener, KeyListener {
 	int buttonHeight = 60;
 	int buttonFontSize = 30;
 	ArrayList<JButton> ButtonList = new ArrayList<>();
-	ArrayList<String> ButtonNameList = new ArrayList<>(Arrays.asList("Ammo_+", "Ammo_-", "BulletSpeed_+", "BulletSpeed_-", "Create"));
+	ArrayList<String> ButtonNameList = new ArrayList<>();
 	String AmmoTitle = "Ammo";
 	String BulletSpeedTitle = "BulletSpeed";
+	String BulletAmountTitle = "BulletAmount";
 	int AmmoCounter = 1;
 	int BulletSpeedCounter = 1;
+	int BulletAmountCounter = 1;
+	int DamageCounter = 1;
+	String GunCategory;
 
-	public RifleCreationScreen(Main main) {
-
+	public GunCreationScreen(Main main, String GunCategory) {
+		this.GunCategory = GunCategory;
+		// Add different buttons depending on the selected category
+		if(GunCategory.equals("Rifle")) {
+			ButtonNameList = new ArrayList<>(Arrays.asList("Ammo_+", "Ammo_-", "BulletSpeed_+", "BulletSpeed_-", "Create"));
+		}
+		if(GunCategory.equals("Sniper")) {
+			ButtonNameList = new ArrayList<>(Arrays.asList("Ammo_+", "Ammo_-", "Damage_+", "Damage_-", "Create"));
+		}
+		if(GunCategory.equals("Shotgun")) {
+			ButtonNameList = new ArrayList<>(Arrays.asList("Ammo_+", "Ammo_-", "BulletAmount_+", "BulletAmount_-", "Create"));
+			System.out.println(ButtonNameList);
+		}
+		
 		// Import main
 		this.main = main;
 
@@ -49,9 +65,15 @@ public class RifleCreationScreen implements ActionListener, KeyListener {
 
 	public void draw(Graphics g, Main main) {
 		g.drawString(AmmoTitle, pannelWidth / 2 - 300, pannelHeight / 2 - buttonHeight);
-		g.drawString(BulletSpeedTitle, pannelWidth / 2 - 300, pannelHeight / 2 + buttonHeight);
 		g.drawString(Integer.toString(AmmoCounter), pannelWidth / 2 + 300, pannelHeight / 2 - buttonHeight);
-		g.drawString(Integer.toString(BulletSpeedCounter), pannelWidth / 2 + 300, pannelHeight / 2 + buttonHeight);
+		if (GunCategory.equals("Rifle")) {
+			g.drawString(BulletSpeedTitle, pannelWidth / 2 - 300, pannelHeight / 2 + buttonHeight);
+			g.drawString(Integer.toString(BulletSpeedCounter), pannelWidth / 2 + 300, pannelHeight / 2 + buttonHeight);
+		}
+		if (GunCategory.equals("Shotgun")) {
+			g.drawString(BulletAmountTitle, pannelWidth / 2 - 300, pannelHeight / 2 + buttonHeight);
+			g.drawString(Integer.toString(BulletAmountCounter), pannelWidth / 2 + 300, pannelHeight / 2 + buttonHeight);
+		}
 
 	}
 
@@ -106,12 +128,44 @@ public class RifleCreationScreen implements ActionListener, KeyListener {
 			BulletSpeedCounter -= 1;
 
 		}
+		
+		if (e.getActionCommand().equalsIgnoreCase("BulletAmount_+")) {
+
+			BulletAmountCounter += 1;
+
+		}
+
+		if (e.getActionCommand().equalsIgnoreCase("BulletAmount_-")) {
+
+			BulletAmountCounter -= 1;
+
+		}
+		
+		if (e.getActionCommand().equalsIgnoreCase("Damage_+")) {
+
+			DamageCounter += 1;
+
+		}
+
+		if (e.getActionCommand().equalsIgnoreCase("Damage_-")) {
+
+			DamageCounter -= 1;
+
+		}
 
 		if (e.getActionCommand().equalsIgnoreCase("Create")) {
 
 			// add made rifle to arsenal
 			main.GunCreation.add("Ammo=" + Integer.toString(AmmoCounter));
-			main.GunCreation.add("BulletSpeed=" + Integer.toString(BulletSpeedCounter));
+			if (GunCategory.equals("Rifle")) {
+				main.GunCreation.add("BulletSpeed=" + Integer.toString(BulletSpeedCounter));
+			}
+			if (GunCategory.equals("Shotgun")) {
+				main.GunCreation.add("BulletAmount=" + Integer.toString(BulletAmountCounter));
+			}
+			if (GunCategory.equals("Sniper")) {
+				main.GunCreation.add("Damage=" + Integer.toString(DamageCounter));
+			}
 			main.GunCreation.add(0, "Name=NewGun");
 			main.ArsenalGuns.add(main.GunCreation);
 			main.GunCreation = null;
@@ -144,6 +198,18 @@ public class RifleCreationScreen implements ActionListener, KeyListener {
 		}
 		if (AmmoCounter > 10) {
 			AmmoCounter = 10;
+		}
+		if (BulletAmountCounter < 1) {
+			BulletAmountCounter = 1;
+		}
+		if (BulletAmountCounter > 10) {
+			BulletAmountCounter = 10;
+		}
+		if (DamageCounter < 1) {
+			DamageCounter = 1;
+		}
+		if (DamageCounter > 10) {
+			DamageCounter = 10;
 		}
 	}
 
