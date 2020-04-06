@@ -10,7 +10,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 public class Main extends JPanel {
-	
+	String Hi;
 	static JFrame f;
 	static JPanel hoofdpaneel;
 

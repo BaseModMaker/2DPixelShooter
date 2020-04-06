@@ -17,7 +17,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
 public class GunSpriteSelection implements KeyListener, ActionListener {
-	
+	String Hi;
 	Main main;
 	BufferedImage FrameImage;
 	int pannelWidth, pannelHeight;

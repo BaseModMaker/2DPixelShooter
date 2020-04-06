@@ -17,7 +17,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
 public class GunCategorySelection implements KeyListener, ActionListener {
-	
+	String Hi;
 	Main main;
 	int pannelWidth, pannelHeight;
 	int buttonWidth = 100;

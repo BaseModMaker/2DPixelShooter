@@ -6,7 +6,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 public class SniperCreationScreen implements ActionListener, KeyListener {
-	
+	String Hi;
 	public SniperCreationScreen(Main main) {
 		
 	}
