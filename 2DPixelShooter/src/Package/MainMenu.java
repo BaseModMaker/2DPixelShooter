@@ -16,6 +16,7 @@ import javax.swing.JButton;
 
 public class MainMenu implements ActionListener{
 	Main main;
+	buttons buttons;
 	int pannelWidth,pannelHeight;
 	int buttonWidth = 200;
 	int buttonHeight = 60;
@@ -26,10 +27,12 @@ public class MainMenu implements ActionListener{
 	ArrayList<BufferedImage> ImageList = new ArrayList<>();
 	ArrayList<Icon> IconList = new ArrayList<>();
 	
-	public MainMenu(Main main) {
+	public MainMenu(Main main, buttons buttons) {
 		
 		//Import main
 		this.main = main;
+		
+		this.buttons = buttons;
 		
 		
 		//Import images and add them to icon list
@@ -91,7 +94,7 @@ public class MainMenu implements ActionListener{
 			
 			//Go from MainMenu to Game
 			main.mainMenu = null;
-			main.game = new Game (main);
+			main.game = new Game (main, buttons);
 			main.addMouseListener(main.game);
 			main.addKeyListener(main.game);
 			main.setFocusable(true);
@@ -100,8 +103,9 @@ public class MainMenu implements ActionListener{
 		else{
 			
 			//Go from main menu to arsenal
+			main.SetButtonVisibility("Arsenal", true);
 			main.mainMenu = null;
-			main.arsenal = new Arsenal(main);
+			main.arsenal = new Arsenal(main, buttons);
 			main.addKeyListener(main.arsenal);
 			main.setFocusable(true);
 			main.setFocusTraversalKeysEnabled(false);

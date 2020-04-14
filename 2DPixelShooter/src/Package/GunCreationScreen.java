@@ -27,9 +27,11 @@ public class GunCreationScreen implements ActionListener, KeyListener {
 	int BulletAmountCounter = 1;
 	int DamageCounter = 1;
 	String GunCategory;
+	buttons buttons;
 
-	public GunCreationScreen(Main main, String GunCategory) {
+	public GunCreationScreen(Main main, String GunCategory, buttons buttons) {
 		this.GunCategory = GunCategory;
+		this.buttons = buttons;
 		// Add different buttons depending on the selected category
 		if(GunCategory.equals("Rifle")) {
 			ButtonNameList = new ArrayList<>(Arrays.asList("Ammo_+", "Ammo_-", "BulletSpeed_+", "BulletSpeed_-", "Create"));
@@ -171,7 +173,7 @@ public class GunCreationScreen implements ActionListener, KeyListener {
 
 			// go from rifle creation screen to arsenal
 			main.rifleCreationScreen = null;
-			main.arsenal = new Arsenal(main);
+			main.arsenal = new Arsenal(main, buttons);
 			main.addKeyListener(main.arsenal);
 			main.setFocusable(true);
 			main.setFocusTraversalKeysEnabled(false);

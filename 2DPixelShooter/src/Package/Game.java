@@ -11,10 +11,17 @@ public class Game implements MouseListener, KeyListener {
 	int MouseXValue;
 	int MouseYValue;
 	Main main;
+	buttons buttons;
 	int SniperShootTime;
+	int PlayerX;
+	int PlayerY;
+	int MovementSpeed = 5;
 
-	public Game(Main main) {
+	public Game(Main main, buttons buttons) {
 		this.main = main;
+		this.buttons = buttons;
+		PlayerX = main.getWidth() / 2;
+		PlayerY = main.getHeight() / 2;
 	}
 
 	public void draw(Graphics g, Main main) {
@@ -52,15 +59,15 @@ public class Game implements MouseListener, KeyListener {
 		if (GunCategory.equals("Category=Shotgun") == true) {
 			for (int i = 0; i < Integer.parseInt(bulletAttribute[1]); i++) {
 				Double ShotgunAngle;
-				if ( (i & 1) == 0 ) {
-					ShotgunAngle = angle+i*0.1;
-				}else {
-					ShotgunAngle = angle-i*0.1;
+				if ((i & 1) == 0) {
+					ShotgunAngle = angle + i * 0.1;
+				} else {
+					ShotgunAngle = angle - i * 0.1;
 				}
-				main.bullet.add(new Bullet(main, GunCategory, main.getWidth() / 2, main.getHeight() / 2, ShotgunAngle, 5));
+				main.bullet.add(new Bullet(main, GunCategory, PlayerX, PlayerY, ShotgunAngle, 5));
 			}
 		} else {
-			main.bullet.add(new Bullet(main, GunCategory, main.getWidth() / 2, main.getHeight() / 2, angle, Integer.parseInt(bulletAttribute[1])));
+			main.bullet.add(new Bullet(main, GunCategory, PlayerX, PlayerY, angle, Integer.parseInt(bulletAttribute[1])));
 		}
 
 	}
@@ -92,7 +99,7 @@ public class Game implements MouseListener, KeyListener {
 		case KeyEvent.VK_ESCAPE:
 
 			main.game = null;
-			main.mainMenu = new MainMenu(main);
+			main.mainMenu = new MainMenu(main, buttons);
 			main.removeKeyListener(this);
 			main.removeMouseListener(this);
 
@@ -106,6 +113,25 @@ public class Game implements MouseListener, KeyListener {
 
 			break;
 
+		case KeyEvent.VK_UP:
+			PlayerY -= MovementSpeed;
+
+			break;
+
+		case KeyEvent.VK_DOWN:
+			PlayerY += MovementSpeed;
+
+			break;
+
+		case KeyEvent.VK_LEFT:
+			PlayerX -= MovementSpeed;
+
+			break;
+
+		case KeyEvent.VK_RIGHT:
+			PlayerX += MovementSpeed;
+
+			break;
 		}
 
 	}

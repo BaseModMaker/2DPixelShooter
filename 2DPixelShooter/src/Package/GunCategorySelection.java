@@ -18,6 +18,7 @@ import javax.swing.JButton;
 
 public class GunCategorySelection implements KeyListener, ActionListener {
 	Main main;
+	buttons buttons;
 	int pannelWidth, pannelHeight;
 	int buttonWidth = 100;
 	int buttonHeight = 200;
@@ -32,8 +33,9 @@ public class GunCategorySelection implements KeyListener, ActionListener {
 	int TitleFontSize = 30;
 	int CategoryFontSize = 15;
 
-	public GunCategorySelection(Main main) {
+	public GunCategorySelection(Main main, buttons buttons) {
 		this.main = main;
+		this.buttons = buttons;
 
 		// Import images and add them to icon list
 		try {
@@ -99,7 +101,7 @@ public class GunCategorySelection implements KeyListener, ActionListener {
 		case KeyEvent.VK_ESCAPE:
 			if (main.gunCategorySelection != null) {
 				main.gunCategorySelection = null;
-				main.gunSpriteSelection = new GunSpriteSelection(main);
+				main.gunSpriteSelection = new GunSpriteSelection(main, buttons);
 				main.removeKeyListener(this);
 
 				// Remove the buttons on screen;
@@ -129,7 +131,7 @@ public class GunCategorySelection implements KeyListener, ActionListener {
 			if (e.getActionCommand().equals(ButtonNameList.get(i)) == true) {
 				main.GunCreation.add("Category=" + (ButtonNameList.get(i)));
 				main.gunCategorySelection = null;
-				main.rifleCreationScreen = new GunCreationScreen(main, ButtonNameList.get(i));
+				main.rifleCreationScreen = new GunCreationScreen(main, ButtonNameList.get(i), buttons);
 				main.addKeyListener(main.rifleCreationScreen);
 				main.setFocusable(true);
 				main.setFocusTraversalKeysEnabled(false);

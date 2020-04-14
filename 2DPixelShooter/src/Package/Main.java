@@ -30,21 +30,30 @@ public class Main extends JPanel {
 	public GunCreationScreen rifleCreationScreen;
 	public Arsenal arsenal;
 	public Game game;
+	public buttons buttons;
 	public GunCategorySelection gunCategorySelection;
 	public ArrayList<Bullet> bullet;
 	ArrayList<String> GunCreation = new ArrayList<String>();
 	ArrayList<ArrayList<String>> gunList = new ArrayList<ArrayList<String>>();
 	ArrayList<ArrayList<String>> ArsenalGuns = new ArrayList<ArrayList<String>>();
 	int GunIndex = 0;
+	
+	int arsButtonWidth = 200;
+	int arsButtonHeight = 60;
+	int arsButtonFontSize = 0;
+	int arsButtonXPos = 0;
+	int arsButtonYPos = 0;
 
 	public Main() {
 
 		Timer t = new Timer();
 		t.scheduleAtFixedRate(new UpdateTimerTask(), 0, 20);
 
-		mainMenu = new MainMenu(this);
+		mainMenu = new MainMenu(this, buttons);
 
 		bullet = new ArrayList<Bullet>();
+		
+		buttons = new buttons(this, arsenal);
 
 		ArrayList<String> DefaultGun = new ArrayList<String>(Arrays.asList("Name=Default Gun", "Sprite=DefaultSprite", "Category=Sniper", "Ammo=10", "BulletSpeed=0"));
 		ArsenalGuns.add(DefaultGun);
@@ -75,6 +84,9 @@ public class Main extends JPanel {
 				}
 				for (Bullet bullet : bullet) {
 					bullet.update();
+				}
+				if (buttons != null) {
+					buttons.update();
 				}
 			} catch (Exception e) {
 
@@ -112,6 +124,14 @@ public class Main extends JPanel {
 
 		}
 		repaint();
+	}
+	
+	public void SetButtonVisibility(String classToRemove, Boolean visibility) {
+		for (int i = 0; i < buttons.ButtonNameList.size(); i++) {
+			if (buttons.ButtonNameList.get(i).split("_")[0].equals(classToRemove)) {
+				buttons.ButtonList.get(i).setVisible(visibility);
+			}
+		}
 	}
 
 }
