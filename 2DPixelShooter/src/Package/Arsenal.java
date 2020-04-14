@@ -18,7 +18,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
 public class Arsenal implements KeyListener, ActionListener {
-   
 	Main main;
 	BufferedImage FrameImage;
 	int pannelWidth, pannelHeight;

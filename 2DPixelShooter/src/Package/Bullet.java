@@ -3,7 +3,6 @@ package Package;
 import java.awt.Graphics;
 
 public class Bullet {
-	String Hi;
 	int SniperBulletShotShowTime = 10;
 	int X;
 	int Y;

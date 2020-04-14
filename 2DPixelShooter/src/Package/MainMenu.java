@@ -15,7 +15,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
 public class MainMenu implements ActionListener{
-	String Hi;
 	Main main;
 	int pannelWidth,pannelHeight;
 	int buttonWidth = 200;

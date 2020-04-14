@@ -8,7 +8,6 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 public class Game implements MouseListener, KeyListener {
-	String Hi;
 	int MouseXValue;
 	int MouseYValue;
 	Main main;

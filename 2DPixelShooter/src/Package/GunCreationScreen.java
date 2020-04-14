@@ -12,7 +12,6 @@ import java.util.Arrays;
 import javax.swing.JButton;
 
 public class GunCreationScreen implements ActionListener, KeyListener {
-	String Hi;
 	Main main;
 	int pannelWidth, pannelHeight;
 	int buttonWidth = 60;
