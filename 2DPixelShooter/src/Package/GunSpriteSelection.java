@@ -1,40 +1,30 @@
 package Package;
 
-import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
-
-import javax.imageio.ImageIO;
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
 
 public class GunSpriteSelection implements KeyListener, ActionListener {
 	Main main;
 	buttons buttons;
 	BufferedImage FrameImage;
 	int pannelWidth, pannelHeight;
-	int buttonWidth = 200;
-	int buttonHeight = 200;
-	int buttonFontSize = 0;
+	/*
 	ArrayList<JButton> ButtonList = new ArrayList<>();
 	ArrayList<String> ButtonNameList = new ArrayList<>(Arrays.asList("Gun1", "Gun2", "Gun3", "Gun4", "Gun5", "Gun6", "Gun7", "Gun8", "Gun9"));
 	ArrayList<String> ImageNamesList = new ArrayList<>(Arrays.asList("/gun.png", "/Frame.png", "/Frame.png", "/Frame.png", "/Frame.png", "/Frame.png", "/Frame.png", "/Frame.png", "/Frame.png"));
 	ArrayList<BufferedImage> ImageList = new ArrayList<>();
-	ArrayList<Icon> IconList = new ArrayList<>();
+	ArrayList<Icon> IconList = new ArrayList<>();*/
 
 	public GunSpriteSelection(Main main, buttons buttons) {
 		this.main = main;
 
 		// Import images and add them to icon list
-		try {
+		/*try {
 			FrameImage = ImageIO.read(getClass().getResourceAsStream("/Frame.png"));
 			for (int i = 0; i < ImageNamesList.size(); i++) {
 				BufferedImage image = ImageIO.read(getClass().getResourceAsStream(ImageNamesList.get(i)));
@@ -59,7 +49,7 @@ public class GunSpriteSelection implements KeyListener, ActionListener {
 			button.setBorderPainted(false);
 			button.setFont(new Font("Dialog", Font.PLAIN, buttonFontSize));
 			ButtonList.add(button);
-		}
+		}*/
 
 	}
 
@@ -71,7 +61,7 @@ public class GunSpriteSelection implements KeyListener, ActionListener {
 		// Get panel width and height
 		pannelWidth = main.getWidth();
 		pannelHeight = main.getHeight();
-		int j = 1, a = 1;
+		/*int j = 1, a = 1;
 		for (int i = 0; i < ButtonNameList.size(); i++) {
 			ButtonList.get(i).setBounds(j*pannelWidth/4 - buttonWidth/ 2, a * pannelHeight / 4 - buttonHeight / 2, buttonWidth, buttonHeight);
 			j+=1;
@@ -79,7 +69,7 @@ public class GunSpriteSelection implements KeyListener, ActionListener {
 				j=1;
 				a+=1;
 			}
-		}
+		}*/
 	}
 
 	@Override
@@ -100,13 +90,13 @@ public class GunSpriteSelection implements KeyListener, ActionListener {
 				main.removeKeyListener(this);
 
 				// Remove the buttons on screen;
-				int length = ButtonList.size();
+				/*int length = ButtonList.size();
 				for (int i = 0; i < length ; i++) {
 
 					ButtonList.get(0).setVisible(false);
 					ButtonList.remove(0);
 
-				}
+				}*/
 				break;
 			}
 
@@ -132,12 +122,12 @@ public class GunSpriteSelection implements KeyListener, ActionListener {
 		}
 		
 		// Remove the buttons on screen;
-		int length = ButtonList.size();
+		/*int length = ButtonList.size();
 		for (int i = 0; i < length; i++) {
 
 			ButtonList.get(0).setVisible(false);
 			ButtonList.remove(0);
 
-		}
+		}*/
 	}
 }

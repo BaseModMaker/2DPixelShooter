@@ -13,7 +13,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
 public class buttons implements ActionListener {
-	ArrayList<String> ButtonNameList = new ArrayList<>(Arrays.asList("Arsenal_NewGun", "Arsenal_Gun1", "Arsenal_Gun2", "Arsenal_Gun3", "Arsenal_Gun4", "Arsenal_Gun5", "Arsenal_Gun6", "Arsenal_Gun7", "MainMenu_Play", "MainMenu_Arsenal"));
+	ArrayList<String> ButtonNameList = new ArrayList<>(Arrays.asList("Arsenal_NewGun", "Arsenal_Gun1", "Arsenal_Gun2", "Arsenal_Gun3", "Arsenal_Gun4", "Arsenal_Gun5", "Arsenal_Gun6", "Arsenal_Gun7", "GunSpriteSelection_Gun1", "GunSpriteSelection_Gun2",
+			"GunSpriteSelection_Gun3", "GunSpriteSelection_Gun4", "GunSpriteSelection_Gun5", "GunSpriteSelection_Gun6", "GunSpriteSelection_Gun7", "GunSpriteSelection_Gun8", "GunSpriteSelection_Gun9", "MainMenu_Play", "MainMenu_Arsenal"));
 	ArrayList<ArrayList<Integer>> ButtonSpecificationsList = new ArrayList<>();
 	ArrayList<JButton> ButtonList = new ArrayList<>();
 	ArrayList<BufferedImage> imageList = new ArrayList<>();
@@ -24,25 +25,41 @@ public class buttons implements ActionListener {
 
 		try {
 			for (int i = 0; i < ButtonNameList.size(); i++) {
-				BufferedImage image;
-				InputStream input = getClass().getResourceAsStream("/" + ButtonNameList.get(i) + ".png");
-				if (input != null) {
-					image = ImageIO.read(input);
+				BufferedImage image = null;
+				if (ButtonNameList.get(i).split("_")[0].equals("GunSpriteSelection")) {
+					if(i == 8) {
+						image = ImageIO.read(getClass().getResourceAsStream("/gun.png"));
+					} else {
+						image = ImageIO.read(getClass().getResourceAsStream("/Frame.png"));
+					}
 				} else {
-					image = null;
+					InputStream input = getClass().getResourceAsStream("/" + ButtonNameList.get(i) + ".png");
+					if (input != null) {
+						image = ImageIO.read(input);
+					} else {
+						image = null;
+					}
+					
 				}
 				imageList.add(image);
 			}
 		} catch (Exception e) {
 
 		}
-
+		int j = 1, a = 1;
 		for (int i = 0; i < ButtonNameList.size(); i++) {
 			if (ButtonNameList.get(i).split("_")[0].equals("Arsenal")) {
 				ButtonMaker(ButtonNameList.get(i), main.arsButtonWidth, main.arsButtonHeight, main.arsButtonFontSize, (main.width - main.arsButtonWidth) / 2, (i + 1) * main.height / 8 - main.arsButtonHeight / 2);
-			} else {
-				break;
+			} 
+			if (ButtonNameList.get(i).split("_")[0].equals("GunSpriteSelection")) {
+				ButtonMaker(ButtonNameList.get(i), main.gSSButtonWidth, main.gSSButtonHeight, main.gSSButtonFontSize, j*main.width/4 - main.gSSButtonWidth/ 2,  a * main.height / 4 - main.gSSButtonHeight / 2);
+				j+=1;
+				if(j>=4) {
+					j=1;
+					a+=1;
+				}
 			}
+			
 		}
 		ButtonMaker("MainMenu_Play", main.mMButtonWidth, main.mMButtonHeight, main.mMButtonFontSize, (main.width - main.mMButtonWidth) / 2, (main.height - main.mMButtonHeight) / 2);
 		ButtonMaker("MainMenu_Arsenal", main.mMButtonWidth, main.mMButtonHeight, main.mMButtonFontSize, (main.width - main.mMButtonWidth) / 2, 6 * main.height / 10 - main.mMButtonHeight / 2);
@@ -69,12 +86,13 @@ public class buttons implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		ChangeClass("Arsenal_NewGun", "GunSpriteSelection", e);
-		ChangeClass("MainMenu_Play", "Game", e);
-		ChangeClass("MainMenu_Arsenal", "Arsenal", e);
+		ChangeClass("Arsenal_NewGun", "GunSpriteSelection", null, e);
+		ChangeClass("MainMenu_Play", "Game", null, e);
+		ChangeClass("MainMenu_Arsenal", "Arsenal", null, e);
+		ChangeClass("GunSpriteSelection_Gun1", "GunCategorySelection", "Sprite=DefaultSprite", e);
 	}
 
-	public void ChangeClass(String buttonName, String newClassName, ActionEvent e) {
+	public void ChangeClass(String buttonName, String newClassName, String gunAddon, ActionEvent e) {
 		if (e.getActionCommand().equalsIgnoreCase(buttonName)) {
 
 			main.SetButtonVisibility(buttonName.split("_")[0], false);
@@ -86,6 +104,10 @@ public class buttons implements ActionListener {
 
 			main.setFocusable(true);
 			main.setFocusTraversalKeysEnabled(false);
+			
+			if(gunAddon != null) {
+				main.GunCreation.add(gunAddon);
+			}
 		}
 
 	}
@@ -118,6 +140,10 @@ public class buttons implements ActionListener {
 		if (newClassName.contentEquals("GunSpriteSelection")) {
 			main.gunSpriteSelection = new GunSpriteSelection(main, this);
 			main.addKeyListener(main.gunSpriteSelection);
+		}
+		if (newClassName.contentEquals("GunCategorySelection")) {
+			main.gunCategorySelection = new GunCategorySelection(main, this);
+			main.addKeyListener(main.gunCategorySelection);
 		}
 	}
 

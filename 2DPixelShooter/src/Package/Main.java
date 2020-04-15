@@ -38,6 +38,10 @@ public class Main extends JPanel {
 	int mMButtonHeight = 60;
 	int mMButtonFontSize = 0;
 	
+	int gSSButtonWidth = 200;
+	int gSSButtonHeight = 200;
+	int gSSButtonFontSize = 0;
+	
 	public static void main(String[] args) {
 		//int width = 830;
 		//int height = 830;
