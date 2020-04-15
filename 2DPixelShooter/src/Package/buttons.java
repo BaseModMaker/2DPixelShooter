@@ -80,7 +80,6 @@ public class buttons implements ActionListener {
 		if (image != null) {
 			button.setIcon(new ImageIcon(image.getScaledInstance(width, height, BufferedImage.SCALE_DEFAULT)));
 		}
-		// button.setBounds(xPosition, yPosition, width, height);
 		ButtonList.add(button);
 	}
 

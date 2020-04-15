@@ -43,10 +43,7 @@ public class Main extends JPanel {
 	int gSSButtonFontSize = 0;
 	
 	public static void main(String[] args) {
-		//int width = 830;
-		//int height = 830;
 		f = new JFrame();
-		//f.setSize(width, height);
 		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		f.setTitle("Pixel");
 		hoofdpaneel = new Main();
