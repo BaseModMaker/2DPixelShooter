@@ -37,9 +37,6 @@ public class buttons implements ActionListener {
 
 		}
 
-		// List<String> arsNames = Arrays.asList("Arsenal_NewGun", "Arsenal_Gun1",
-		// "Arsenal_Gun2", "Arsenal_Gun3", "Arsenal_Gun4", "Arsenal_Gun5",
-		// "Arsenal_Gun6", "Arsenal_Gun7");
 		for (int i = 0; i < ButtonNameList.size(); i++) {
 			if (ButtonNameList.get(i).split("_")[0].equals("Arsenal")) {
 				ButtonMaker(ButtonNameList.get(i), main.arsButtonWidth, main.arsButtonHeight, main.arsButtonFontSize, (main.width - main.arsButtonWidth) / 2, (i + 1) * main.height / 8 - main.arsButtonHeight / 2);
@@ -72,28 +69,6 @@ public class buttons implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		/*
-		 * if (e.getActionCommand().equals("Arsenal_NewGun") == true) {
-		 * 
-		 * // Go from arsenal to gun sprite selection main.arsenal = null;
-		 * main.gunSpriteSelection = new GunSpriteSelection(main, this);
-		 * main.addKeyListener(main.gunSpriteSelection); main.setFocusable(true);
-		 * main.setFocusTraversalKeysEnabled(false); main.SetButtonVisibility("Arsenal",
-		 * false);
-		 * 
-		 * } if(e.getActionCommand().equalsIgnoreCase("MainMenu_Play")) { //Go from
-		 * MainMenu to Game main.mainMenu = null; main.game = new Game (main, this);
-		 * main.addMouseListener(main.game); main.addKeyListener(main.game);
-		 * main.setFocusable(true); main.setFocusTraversalKeysEnabled(false);
-		 * main.SetButtonVisibility("MainMenu", false); }
-		 * if(e.getActionCommand().equalsIgnoreCase("MainMenu_Arsenal")) {
-		 * 
-		 * //Go from main menu to arsenal main.SetButtonVisibility("Arsenal", true);
-		 * main.mainMenu = null; main.arsenal = new Arsenal(main, this);
-		 * main.addKeyListener(main.arsenal); main.setFocusable(true);
-		 * main.setFocusTraversalKeysEnabled(false);
-		 * main.SetButtonVisibility("MainMenu", false); }
-		 */
 		ChangeClass("Arsenal_NewGun", "GunSpriteSelection", e);
 		ChangeClass("MainMenu_Play", "Game", e);
 		ChangeClass("MainMenu_Arsenal", "Arsenal", e);
@@ -101,14 +76,14 @@ public class buttons implements ActionListener {
 
 	public void ChangeClass(String buttonName, String newClassName, ActionEvent e) {
 		if (e.getActionCommand().equalsIgnoreCase(buttonName)) {
-			
+
 			main.SetButtonVisibility(buttonName.split("_")[0], false);
 			main.SetButtonVisibility(newClassName, true);
-			
+
 			NullifyClass(buttonName);
-			
+
 			NewClass(newClassName);
-		
+
 			main.setFocusable(true);
 			main.setFocusTraversalKeysEnabled(false);
 		}
@@ -129,7 +104,7 @@ public class buttons implements ActionListener {
 			main.gunCreationScreen = null;
 		}
 	}
-	
+
 	private void NewClass(String newClassName) {
 		if (newClassName.contentEquals("Arsenal")) {
 			main.arsenal = new Arsenal(main, this);

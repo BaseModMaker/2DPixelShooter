@@ -131,8 +131,8 @@ public class GunCategorySelection implements KeyListener, ActionListener {
 			if (e.getActionCommand().equals(ButtonNameList.get(i)) == true) {
 				main.GunCreation.add("Category=" + (ButtonNameList.get(i)));
 				main.gunCategorySelection = null;
-				main.rifleCreationScreen = new GunCreationScreen(main, ButtonNameList.get(i), buttons);
-				main.addKeyListener(main.rifleCreationScreen);
+				main.gunCreationScreen = new GunCreationScreen(main, ButtonNameList.get(i), buttons);
+				main.addKeyListener(main.gunCreationScreen);
 				main.setFocusable(true);
 				main.setFocusTraversalKeysEnabled(false);
 			}

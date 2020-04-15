@@ -20,14 +20,7 @@ public class Arsenal implements KeyListener, ActionListener {
 	buttons buttons;
 	
 	int pannelWidth, pannelHeight;
-	/*int buttonWidth = 200;
-	int buttonHeight = 60;
-	int buttonFontSize = 0;
-	ArrayList<JButton> ButtonList = new ArrayList<>();
-	ArrayList<String> ButtonNameList = new ArrayList<>(Arrays.asList("NewGun", "Gun1", "Gun2", "Gun3", "Gun4", "Gun5", "Gun6", "Gun7"));
-	ArrayList<String> ImageNamesList = new ArrayList<>(Arrays.asList("/NewGunText.png"));
-	ArrayList<BufferedImage> ImageList = new ArrayList<>();
-	ArrayList<Icon> IconList = new ArrayList<>();*/
+	
 
 	public Arsenal(Main main, buttons buttons) {
 		// Import main
@@ -37,30 +30,9 @@ public class Arsenal implements KeyListener, ActionListener {
 		// Import images and add them to icon list
 		try {
 			FrameImage = ImageIO.read(getClass().getResourceAsStream("/Frame.png"));
-			/*for (int i = 0; i < ImageNamesList.size(); i++) {
-				BufferedImage image = ImageIO.read(getClass().getResourceAsStream(ImageNamesList.get(i)));
-				IconList.add(new ImageIcon(image.getScaledInstance(buttonWidth, buttonHeight, BufferedImage.SCALE_DEFAULT)));
-			}*/
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-
-		// Initiate buttons
-		/*for (int i = 0; i < ButtonNameList.size(); i++) {
-			JButton button;
-			button = new JButton(ButtonNameList.get(i));
-			if (i == 0) {
-				button.setIcon(IconList.get(i));
-			}
-			main.add(button);
-			button.addActionListener(this);
-			button.setVisible(true);
-			button.setOpaque(false);
-			button.setContentAreaFilled(false);
-			button.setBorderPainted(false);
-			button.setFont(new Font("Dialog", Font.PLAIN, buttonFontSize));
-			ButtonList.add(button);
-		}*/
 
 	}
 
@@ -84,16 +56,9 @@ public class Arsenal implements KeyListener, ActionListener {
 		pannelWidth = main.getWidth();
 		pannelHeight = main.getHeight();
 
-		// Adjust the bounds of play button if the screen width and height changes
-		//AdjustButtonBounds();
 
 	}
 
-	/*private void AdjustButtonBounds() {
-		for (int i = 0; i < ButtonNameList.size(); i++) {
-			ButtonList.get(i).setBounds((pannelWidth - buttonWidth) / 2, (i + 1) * pannelHeight / 8 - buttonHeight / 2, buttonWidth, buttonHeight);
-		}
-	}*/
 
 	@Override
 	public void keyTyped(KeyEvent e) {
@@ -106,12 +71,7 @@ public class Arsenal implements KeyListener, ActionListener {
 
 		case KeyEvent.VK_ESCAPE:
 			// Remove the buttons on screen;
-			/*for (int i = 0; i < ButtonList.size(); i++) {
-
-				ButtonList.get(0).setVisible(false);
-				ButtonList.remove(0);
-
-			}*/
+			
 			if (main.arsenal != null) {
 				main.arsenal = null;
 				main.mainMenu = new MainMenu(main, buttons);
@@ -141,12 +101,8 @@ public class Arsenal implements KeyListener, ActionListener {
 
 		}
 
-		/*// Remove the buttons on screen;
-		for (int i = 0; i < ButtonList.size(); i++) {
-			ButtonList.get(0).setVisible(false);
-			ButtonList.remove(0);
-
-		}*/
+		// Remove the buttons on screen;
+		
 	}
 
 }

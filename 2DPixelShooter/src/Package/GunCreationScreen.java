@@ -172,7 +172,7 @@ public class GunCreationScreen implements ActionListener, KeyListener {
 			main.GunCreation = null;
 
 			// go from rifle creation screen to arsenal
-			main.rifleCreationScreen = null;
+			main.gunCreationScreen = null;
 			main.arsenal = new Arsenal(main, buttons);
 			main.addKeyListener(main.arsenal);
 			main.setFocusable(true);

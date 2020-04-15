@@ -13,21 +13,10 @@ public class Main extends JPanel {
 	static JFrame f;
 	static JPanel hoofdpaneel;
 
-	public static void main(String[] args) {
-		f = new JFrame();
-		f.setSize(830, 830);
-		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		f.setTitle("Pixel");
-		hoofdpaneel = new Main();
-		f.add(hoofdpaneel);
-		f.setLocation(0, 0);
-		f.setVisible(true);
-	}
-
 	private static final long serialVersionUID = 1L;
 	public MainMenu mainMenu;
 	public GunSpriteSelection gunSpriteSelection;
-	public GunCreationScreen rifleCreationScreen;
+	public GunCreationScreen gunCreationScreen;
 	public Arsenal arsenal;
 	public Game game;
 	public buttons buttons;
@@ -38,27 +27,51 @@ public class Main extends JPanel {
 	ArrayList<ArrayList<String>> ArsenalGuns = new ArrayList<ArrayList<String>>();
 	int GunIndex = 0;
 	
+	int width = 830;
+	int height = 830;
+	
 	int arsButtonWidth = 200;
 	int arsButtonHeight = 60;
 	int arsButtonFontSize = 0;
-	int arsButtonXPos = 0;
-	int arsButtonYPos = 0;
+	
+	int mMButtonWidth = 200;
+	int mMButtonHeight = 60;
+	int mMButtonFontSize = 0;
+	
+	public static void main(String[] args) {
+		//int width = 830;
+		//int height = 830;
+		f = new JFrame();
+		//f.setSize(width, height);
+		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		f.setTitle("Pixel");
+		hoofdpaneel = new Main();
+		f.add(hoofdpaneel);
+		f.setLocation(0, 0);
+		f.setVisible(true);
+	}
 
 	public Main() {
 
+		f.setSize(width, height);
+		
 		Timer t = new Timer();
 		t.scheduleAtFixedRate(new UpdateTimerTask(), 0, 20);
-
+		
+		buttons = new buttons(this, arsenal);
+		
 		mainMenu = new MainMenu(this, buttons);
+		SetButtonVisibility("MainMenu", true);
 
 		bullet = new ArrayList<Bullet>();
 		
-		buttons = new buttons(this, arsenal);
 
 		ArrayList<String> DefaultGun = new ArrayList<String>(Arrays.asList("Name=Default Gun", "Sprite=DefaultSprite", "Category=Sniper", "Ammo=10", "BulletSpeed=0"));
 		ArsenalGuns.add(DefaultGun);
 
 	}
+	
+	
 
 	class UpdateTimerTask extends TimerTask {
 		@Override
@@ -70,8 +83,8 @@ public class Main extends JPanel {
 				if (gunSpriteSelection != null) {
 					gunSpriteSelection.update();
 				}
-				if (rifleCreationScreen != null) {
-					rifleCreationScreen.update();
+				if (gunCreationScreen != null) {
+					gunCreationScreen.update();
 				}
 				if (arsenal != null) {
 					arsenal.update();
@@ -104,8 +117,8 @@ public class Main extends JPanel {
 		if (gunSpriteSelection != null) {
 			gunSpriteSelection.draw(g, this);
 		}
-		if (rifleCreationScreen != null) {
-			rifleCreationScreen.draw(g, this);
+		if (gunCreationScreen != null) {
+			gunCreationScreen.draw(g, this);
 		}
 		if (arsenal != null) {
 			arsenal.draw(g, this);
