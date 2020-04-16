@@ -2,6 +2,7 @@ package Package;
 
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.List;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -20,7 +21,7 @@ public class GunCategorySelection implements KeyListener, ActionListener {
 	Main main;
 	buttons buttons;
 	int pannelWidth, pannelHeight;
-	int buttonWidth = 100;
+	/*int buttonWidth = 100;
 	int buttonHeight = 200;
 	int buttonFontSize = 0;
 	ArrayList<JButton> ButtonList = new ArrayList<>();
@@ -28,7 +29,7 @@ public class GunCategorySelection implements KeyListener, ActionListener {
 	ArrayList<String> ImageNamesList = new ArrayList<>(
 			Arrays.asList("/Frame.png", "/Frame.png", "/Frame.png", "/Frame.png"));
 	ArrayList<BufferedImage> ImageList = new ArrayList<>();
-	ArrayList<Icon> IconList = new ArrayList<>();
+	ArrayList<Icon> IconList = new ArrayList<>();*/
 	String TitleMessage = "Choose a category";
 	int TitleFontSize = 30;
 	int CategoryFontSize = 15;
@@ -38,7 +39,7 @@ public class GunCategorySelection implements KeyListener, ActionListener {
 		this.buttons = buttons;
 
 		// Import images and add them to icon list
-		try {
+		/*try {
 			for (int i = 0; i < ImageNamesList.size(); i++) {
 				BufferedImage image = ImageIO.read(getClass().getResourceAsStream(ImageNamesList.get(i)));
 				IconList.add(
@@ -61,7 +62,7 @@ public class GunCategorySelection implements KeyListener, ActionListener {
 			button.setBorderPainted(false);
 			button.setFont(new Font("Dialog", Font.PLAIN, buttonFontSize));
 			ButtonList.add(button);
-		}
+		}*/
 
 	}
 
@@ -71,10 +72,10 @@ public class GunCategorySelection implements KeyListener, ActionListener {
 		pannelHeight = main.getHeight();
 
 		// Adjust the borders of the buttons
-		for (int i = 0; i < ButtonNameList.size(); i++) {
+		/*for (int i = 0; i < ButtonNameList.size(); i++) {
 			ButtonList.get(i).setBounds((i + 1) * pannelWidth / 5 - buttonWidth / 2,
 					pannelHeight / 2 - buttonHeight / 2, buttonWidth, buttonHeight);
-		}
+		}*/
 
 	}
 
@@ -83,8 +84,13 @@ public class GunCategorySelection implements KeyListener, ActionListener {
 		g.drawString(TitleMessage, pannelWidth / 2 - 140, pannelHeight / 2 - 130);
 
 		g.setFont(new Font("Dialog", Font.BOLD, CategoryFontSize));
-		for (int i = 0; i < ButtonNameList.size(); i++) {
-			g.drawString(ButtonNameList.get(i), (i + 1) * pannelWidth / 5 - buttonWidth / 2, pannelHeight / 2);
+		for (int i = 0; i < buttons.ButtonNameList.size(); i++) {
+			String[] name = buttons.ButtonNameList.get(i).split("_");
+			if(name[0].equals("GunCategorySelection")) {
+				ArrayList<Integer> list = buttons.ButtonSpecificationsList.get(i);
+				g.drawString(name[1], list.get(3), list.get(4));
+			}
+			//g.drawString(ButtonNameList.get(i), (i + 1) * pannelWidth / 5 - buttonWidth / 2, pannelHeight / 2);
 		}
 	}
 
@@ -103,15 +109,6 @@ public class GunCategorySelection implements KeyListener, ActionListener {
 				main.gunCategorySelection = null;
 				main.gunSpriteSelection = new GunSpriteSelection(main, buttons);
 				main.removeKeyListener(this);
-
-				// Remove the buttons on screen;
-				int length = ButtonList.size();
-				for (int i = 0; i < length; i++) {
-
-					ButtonList.get(0).setVisible(false);
-					ButtonList.remove(0);
-
-				}
 				break;
 			}
 
@@ -127,7 +124,7 @@ public class GunCategorySelection implements KeyListener, ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 
-		for (int i = 0; i < ButtonNameList.size(); i++) {
+		/*for (int i = 0; i < ButtonNameList.size(); i++) {
 			if (e.getActionCommand().equals(ButtonNameList.get(i)) == true) {
 				main.GunCreation.add("Category=" + (ButtonNameList.get(i)));
 				main.gunCategorySelection = null;
@@ -145,7 +142,7 @@ public class GunCategorySelection implements KeyListener, ActionListener {
 			ButtonList.get(0).setVisible(false);
 			ButtonList.remove(0);
 
-		}
+		}*/
 	}
 
 }

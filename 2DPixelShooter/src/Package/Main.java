@@ -42,6 +42,10 @@ public class Main extends JPanel {
 	int gSSButtonHeight = 200;
 	int gSSButtonFontSize = 0;
 	
+	int gCaSButtonWidth = 100;
+	int gCaSButtonHeight = 200;
+	int gCaSButtonFontSize = 0;
+	
 	public static void main(String[] args) {
 		f = new JFrame();
 		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
